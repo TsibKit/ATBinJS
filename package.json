@@ -1,0 +1,24 @@
+{
+  "name": "atbinjs",
+  "version": "0.0.0",
+  "description": "practical tasks for Automated Testing Basics in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TsibKit/ATBinJS.git"
+  },
+  "keywords": [
+    "automated",
+    "testing",
+    "basics"
+  ],
+  "author": "NIkita Tsibulsky <tsibulsky.kit@gmail.com> (https://github.com/TsibKit)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TsibKit/ATBinJS/issues"
+  },
+  "homepage": "https://github.com/TsibKit/ATBinJS#readme"
+}
