@@ -12,6 +12,7 @@
         console.log(this.enginePower);
     };
     console.log(car.power);
+
     car.power();
 }
 /* Pears and apples are accepted to the warehouse, write a function that returns the result of adding the number of accepted pears and apples
