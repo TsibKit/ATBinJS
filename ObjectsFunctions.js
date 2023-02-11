@@ -15,7 +15,7 @@
 
     car.power();
 }
-/* Pears and apples are accepted to the warehouse, write a function that returns the result of adding the number of accepted pears and apples
+/* Pears and apples are accepted to the warehouse, write a function that returns the result of adding the Numb of accepted pears and apples
  */
 {
     let fruits = {
@@ -54,22 +54,48 @@ echoType(NaN);
 echoType("fwefwq");
 echoType(echoType);
 } ;
-/* Write a function that determines whether a number is prime or not */
+/* Write a function that determines whether a Numb is prime or not */
 {
-    function isPrime(Number){
-        for (let i = 2; i < Number**0.5; ++i){
-            if (Number % i == 0){
-                console.log(Number + " is not prime. Smaller devider is " + i); 
+    function isPrime(Numb){
+        if ( !Number.isInteger(Numb)) {
+             console.log(Numb + " is not integer, and can't be prime")
+             return false
+        }
+        if (Numb < 2) {
+            console.log(Numb + " is too small to be prime")
+            return false
+        }
+        for (let i = 2; i < Numb**0.5; ++i){
+            if (Numb % i == 0){
+                console.log(Numb + " is not prime. Smaller devider is " + i); 
                 return false
             }
         }
-        console.log(Number + " is prime");
+        console.log(Numb + " is prime");
         return true
     }
+    //prime
     isPrime(5); 
-    isPrime(8);
     isPrime(11);
     isPrime(97);
     isPrime(199);
+    //not prime
+    isPrime(8);
     isPrime(199*97);
+    // too small
+    isPrime(0);
+    isPrime(1);
+    isPrime(-1);
+    isPrime(-1541);
+    // not integer
+    isPrime(5.5);
+    isPrime(55/3);
+    //something interesting
+    isPrime(1e89);
+    isPrime(5e1000);
+    isPrime("Vasia")
+    isPrime(Infinity);
+    isPrime(NaN);
+    isPrime();
+    isPrime(null);
 }
