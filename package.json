@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/TsibKit/ATBinJS/issues"
   },
-  "homepage": "https://github.com/TsibKit/ATBinJS#readme"
+  "homepage": "https://github.com/TsibKit/ATBinJS#readme",
+  "devDependencies": {
+    "fs-extra": "^11.1.0"
+  }
 }
