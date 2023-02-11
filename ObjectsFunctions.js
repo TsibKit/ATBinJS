@@ -49,6 +49,7 @@
  */{
 function echoType(X){
     console.log(typeof(X));
+    return(typeof(X));
  }
 echoType(NaN);
 echoType("fwefwq");
