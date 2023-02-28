@@ -1,0 +1,39 @@
+{
+  "name": "atbinjs",
+  "version": "1.0.0",
+  "description": "practical tasks for Automated Testing Basics in JavaScript",
+  "main": "index.js",
+  "dependencies": {
+    "fs-extra": "^11.1.0",
+    "graceful-fs": "^4.2.10",
+    "jsonfile": "^6.1.0",
+    "npm": "^9.5.1",
+    "universalify": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/register": "^7.21.0",
+    "@wdio/cli": "^8.3.11",
+    "@wdio/local-runner": "^8.3.11",
+    "@wdio/mocha-framework": "^8.3.0",
+    "@wdio/spec-reporter": "^8.3.0",
+    "chromedriver": "^110.0.0",
+    "wdio-chromedriver-service": "^8.1.1"
+  },
+  "scripts": {
+    "test": "wdio run ./wdio.conf.js",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TsibKit/ATBinJS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TsibKit/ATBinJS/issues"
+  },
+  "homepage": "https://github.com/TsibKit/ATBinJS#readme"
+}
