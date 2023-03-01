@@ -4,7 +4,13 @@ class RawPage extends Page{
     
     
     open (pathEnding) {
-        return super.open('raw'/pathEnding);
+        return super.open(`raw/${pathEnding}`);
+    }
+
+    async getPathEnding(pause=0){
+        await browser.pause(pause); //bad 
+        const url = await browser.getUrl();
+        return url.split('/').pop();
     }
 }
 

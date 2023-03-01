@@ -8,39 +8,27 @@ class MainPage extends Page {
     get droplistExpiration () { return $('.form-group.field-postform-expiration  .select2-selection__arrow')};
     get droplistHighlighting () {return $("[aria-labelledby='select2-postform-format-container']   .select2-selection__arrow")}
 
-    get postName () { return $('#postform-name')};
+    get postTitle () { return $('#postform-name')};
     get btnCreate () {return $('.btn.-big')};
 
-    getExpiration(timecode) {return $("li[data-select2-id$='"+timecode+"']")};
-    getHighlighting(languagecode) {return $("li[data-select2-id$='"+languagecode+"']")};
-        
+    line(liCode) {return $(`li[data-select2-id$='${liCode}']`)};
     
     /**
      * define or overwrite page methods
      */
-
-    async setExpiration (time = 'Never', flgMessage=true) {
-        const _timeMap = {
-            'Never':'N',
-            'Burn after read':'B',
-            '10 Minutes':'10M',
-            '1 Hour':'1H',
-            '1 Day':'1D',
-            '1 Week':'1W',
-            '2 Weeks':'2W',
-            '1 Month':'1M',
-            '6 Months':'6M',
-            '1 Year':'1Y'
-            }
-        await this.droplistExpiration.click();
-        if (flgMessage) {
-            time = _timeMap[time];
-        }
-        await this.getExpiration(time).click();
+    async setText(text=''){
+        // console.log(`text ${text}`);
+        await this.postText.setValue(text);
     }
-    
-
-    async setHighlighting (language = 'None', flgMessage=true) {
+    async setTitle(title){
+        // console.log(`Title ${title}`);
+        await this.postTitle.setValue(title)
+    }
+    //This metod do nothing for Undefinited parametr
+    async setHighlighting(language, flgMessage = true){
+        if (this._checkUndefinited(language)){
+            return 
+        }
         const _highlightingMap={
             None:1,
             Bash:8,
@@ -61,15 +49,49 @@ class MainPage extends Page {
             Ruby:45,
             Swift:256,
         }
-        await this.droplistHighlighting.click();
-        if (flgMessage) {
-            language = _highlightingMap[language];
+        await this._setDroplist(language, _highlightingMap, this.droplistHighlighting, flgMessage)
+
+    }
+    //This method sets the default value instead of the Undefined parametr
+    async setExpiration (time  = 'Never', flgMessage=true){
+        const _timeMap = {
+                'Never':'N',
+                'Burn after read':'B',
+                '10 Minutes':'10M',
+                '1 Hour':'1H',
+                '1 Day':'1D',
+                '1 Week':'1W',
+                '2 Weeks':'2W',
+                '1 Month':'1M',
+                '6 Months':'6M',
+                '1 Year':'1Y'
         }
-        await this.getHighlighting(language).click();
+        await this._setDroplist(time, _timeMap, this.droplistExpiration, flgMessage);
+    }
+    _checkUndefinited(param){
+        return (param == null)
+    }    
+
+    async _setDroplist(code,map,droplist,flg = true){
+        if (flg) {
+            code = map[code];
+        }
+        await droplist.click();
+        await this.line(code).click();
     }
 
-    create () {
-        return this.btnCreate.click()
+    async setMsgParameters(msg){
+        await this.setText(msg.text); 
+        await this.setHighlighting(msg.highlighting);
+        await this.setExpiration(msg.expiration);
+        await this.setTitle(msg.title);
+    }
+    async create () {
+        await this.btnCreate.click()
+    }
+    async setAndCreate(msg){
+        await this.setMsgParameters(msg);
+        await this.create();
     }
 }
 

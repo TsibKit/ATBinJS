@@ -1,75 +1,51 @@
-import mainPage from "../pageobjects/main.page";  
-import loginPage from "../pageobjects/login.page";
-import checkPage from "../pageobjects/check.page";
-import rawPage from "../pageobjects/raw.page";
-
-const id ={
-    login : 'atbinjs',
-    email : 'atbinjs@yopmail.com',
-    password : 'superTestPassword',
-}
-describe('check bin in Pastebin',() => {
-    /* I wanted to have more tries. But I had not found solution to pass "Проверка безопасности подключения к сайту"*/
-    // it ('login', async () => {
-    //     await mainPage.open();
-    //     await loginPage.open();
-    //     //await loginPage.inputPassword.waitForDisplayed({timeout:60000, interval:10000}); //try to wait "Проверка безопасности подключения к сайту"
-    //     await loginPage.login(id.login, id.password);
-    // })   
-    
-    it('I can win', async () =>{
-        //open site
+import mainPage from "../pageobjects/main.page"
+import checkPage from "../pageobjects/check.page"
+import rawPage from "../pageobjects/raw.page"
+describe('I can win',() => {
+    const msg={
+       text:"Hello from WebDriver",
+       expiration:'10 Minutes',
+       title:"Hello web",
+    }
+    it('send process', async () =>{
         await mainPage.open();
-        //input message
-        await mainPage.postText.setValue("Hello from WebDriver");
-        //choose Expiration
-        await mainPage.setExpiration('10 Minutes');
-        //input title
-        await mainPage.postName.setValue("Hello web");
-        //send message
-        await mainPage.create();
-        
+        await mainPage.setAndCreate(msg);
+    })    
     })
-    it('Bring It On', async () =>{
-        const msg = {
-            Text:
+
+describe('Bring It On',() => {
+    const msg = {
+        text:
 `git config --global user.name "New Sheriff in Town"
 
 git reset $ (git commit-tree HEAD ^ {tree} -m "Legacy code")
 
 git push origin master --force`,
-            Highlighting: "Bash",
-            Expiration: "10 Minutes",
-            Title: "how to gain dominance among developers",
-        };
-        //open site
+        highlighting: "Bash",
+        expiration: "10 Minutes",
+        title: "how to gain dominance among developers",
+    }
+    it('send process', async () =>{
         await mainPage.open();
-        //input message
-        await mainPage.postText.setValue(msg.Text);
-        //choose Highlighting
-        await mainPage.setHighlighting(msg.Highlighting);
-        //choose Expiration
-        await mainPage.setExpiration(msg.Expiration);
-        //input title
-        await mainPage.postName.setValue(msg.Title);
-        //send message
-        await mainPage.create();
-            // for aprove actions without spending tries 
-            // const urlForCheck = await browser.getUrl();
-            // console.log(urlForCheck);
-            // await checkPage.open('jqbDUZfh'); //for aprove actions without spending tries 
-            // await checkPage.open('8mZW8Kir');
-        //check Browser page title matches Paste Name / Title
-        await expect(browser).toHaveTitleContaining(msg.Title);
-        //check  Syntax is suspended for bash
-        await expect(checkPage.highlightingField).toHaveText(msg.Highlighting);
-        //check  Check that the code matches the one entered in paragraph 2
-        await checkPage.btnRaw.click();
-        await expect(rawPage.rawText).toHaveText(msg.Text);
-            //await expect(checkPage.bashTextField).toHaveTextContaining(msg.Text); //lost format
-            //await expect(checkPage.rawTextField).toHaveText(msg.Text); //must work if you are loged. But for guest isn't exist
+        await mainPage.setAndCreate(msg);
+        /* for manual control */ 
+        //console.log(await rawPage.getPathEnding(1500));
+        /* for aprove actions without spending tries  */
+        //await mainPage.setMsgParameters(msg);
+        //await checkPage.open('c9yiJdXx'); 
     })
-
-    
-
+   /*check Browser page title matches Paste Name / Title */
+    it('title containe', async () =>{
+        await expect(browser).toHaveTitleContaining(msg.title);
+    })
+    /* check  Syntax is suspended for bash */
+    it('highlighthing equal', async () =>{
+        await expect(checkPage.highlightingField).toHaveText(msg.highlighting);
+        
+    })
+    /* check  Check that the code matches the one entered in paragraph 2 */
+    it('text equal', async () =>{
+        await checkPage.btnRaw.click();
+        await expect(rawPage.rawText).toHaveText(msg.text);
+    })
 })
