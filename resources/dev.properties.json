@@ -1,0 +1,35 @@
+{
+    "search":{
+        "text":"Google Cloud Platform Pricing Calculator",
+        "linkName":"Google Cloud Platform Pricing Calculator"
+        },
+    "settings":{
+        "instaceNumber":4,
+        "aim":"",
+        "software":{
+            "name":"Free: Debian, CentOS, CoreOS, Ubuntu, or other User Provided OS Operating System",
+            "value":"free"
+        },
+        "vmClass":{
+            "name":"Regular",
+            "value":"Regular"
+        },
+        "instanceType":{
+            "name":"n1-standard-8 (vCPUs: 8, RAM: 30 GB)",
+            "seriesValue":"n1",
+            "value":"CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8"
+        },
+        "gpu":{
+            "add":true,
+            "number":1,
+            "type":"NVIDIA Tesla V100"
+        },
+        "ssd":"2x375 Gb",
+        "location":"europe-west3",
+        "usage": "1 Year"
+        },
+    "exception":{
+        "costLine":"Total Estimated Cost: USD 1,081.20 per 1 month",
+        "cost":1081.2
+        }
+    }
