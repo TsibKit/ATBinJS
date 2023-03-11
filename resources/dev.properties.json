@@ -12,7 +12,7 @@
         },
         "vmClass":{
             "name":"Regular",
-            "value":"Regular"
+            "value":"regular"
         },
         "instanceType":{
             "name":"n1-standard-8 (vCPUs: 8, RAM: 30 GB)",
@@ -21,15 +21,19 @@
         },
         "gpu":{
             "add":true,
-            "number":1,
-            "type":"NVIDIA Tesla V100"
+            "number":"2",
+            "type":"NVIDIA Tesla V100",
+            "value":"NVIDIA_TESLA_V100"
         },
-        "ssd":"2x375 Gb",
+        "ssd":"2x375 GB",
         "location":"europe-west3",
-        "usage": "1 Year"
+        "usage":{
+            "name":"1 Year",
+            "value":"1"
         },
     "exception":{
         "costLine":"Total Estimated Cost: USD 1,081.20 per 1 month",
         "cost":1081.2
         }
     }
+}
