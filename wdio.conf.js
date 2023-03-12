@@ -5,7 +5,7 @@ export const config = {
     // ====================
     // WebdriverIO supports running e2e tests as well as unit and component tests.
     runner: 'local',
-    
+
     //
     // ==================
     // Specify Test Files
@@ -64,7 +64,7 @@ export const config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-    
+
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
         // grid with only 5 firefox instances available you can make sure that not more than
         // 5 instances get started at a time.
@@ -125,8 +125,8 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver','geckodriver'],
-    
+    services: ['chromedriver', 'geckodriver'],
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -147,22 +147,25 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters:[
+    reporters: [
         [
             "spec",
             {
-            showPreface: false,
+                showPreface: false,
             },
         ],
         'dot',
         ['junit', {
             outputDir: './reports',
-            outputFileFormat: function(options) { // optional
-                return `results-${options.cid}.${options.capabilities}.xml`
+            outputFileFormat: function (options) { // optional
+                const today = new Date();
+                const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+                const time = today.getHours() + "." + today.getMinutes() + "." + today.getSeconds();
+                return `results-${options.cid}_${date}-${time}.xml`
             }
         }]
     ],
-    
+
     //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
@@ -183,8 +186,22 @@ export const config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+                const fs = require("fs");
+        const path = require("path");
+
+        const directory = "./reports";
+
+        fs.readdir(directory, (err, files) => {
+            if (err) throw err;
+
+            for (const file of files) {
+                fs.unlink(path.join(directory, file), (err) => {
+                    if (err) throw err;
+                });
+            }
+        })
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -240,9 +257,8 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    beforeTest: function (test, context) {
-        
-    },
+    // beforeTest: function (test, context) {
+    // },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -266,21 +282,18 @@ export const config = {
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
 
-    afterTest: function( test, context, { error, result, duration, passed, retries }
-      ) {
+    afterTest: function (test, context, { error, result, duration, passed, retries }
+    ) {
         //console.log('!!!!!!!!!!!!!!!!!!!!!!eferlkgnesrbrenbekndf');
         // take a screenshot anytime a test fails and throws an error
         if (error) {
-            //console.log(Object.values(test));
-            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!@');
-            console.log(test.parent)
             const today = new Date();
-            const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
             const time = today.getHours() + "." + today.getMinutes() + "." + today.getSeconds();
             let name = `./reports/${test.parent}_${test.title}_${date}-${time}.png`//${test}-${context}-
-            browser.saveScreenshot(name); 
+            browser.saveScreenshot(name);
         }
-      },
+    },
 
 
     /**

@@ -1,8 +1,9 @@
-// debug.spec.js
+// other.spec.js
 import mainGcPage from "../../pageobject/gc/main.gc.page"
 import searchResultGcPage from "../../pageobject/gc/searchResult.gc.page"
 import calculatorGcPage from "../../pageobject/gc/calculator.gc.page"
 import testDataReader from "../../service/testDataReader"
+import estimator from "../../service/estimator"
 
 describe('Hurt Me Plenty', () => {
     it ('Open main page',async() =>{
@@ -20,7 +21,7 @@ describe('Hurt Me Plenty', () => {
         await expect(browser).toHaveUrlContaining(calculatorGcPage.urlKey); //It is a calculator page
     } )
     it ('Set engine', async () =>{
-        await calculatorGcPage.setCopmuteEngine(testDataReader.settings);
+        await estimator.setCopmuteEngine(testDataReader.settings);
     })
     it ('Get estimated', async () =>{
         await calculatorGcPage.getTotalEstimatedCost();
