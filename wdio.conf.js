@@ -26,6 +26,17 @@ export const config = {
         './test/**/*.spec.js'
         // ToDo: define location for spec files here
     ],
+    suites: {
+        smoke: [
+            './test/specs/smoke.spec.js'
+        ],
+        other: [
+            './test/specs/other.spec.js'
+        ],
+        debug: [
+            './test/specs/debug.spec.js'
+        ],
+    },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
@@ -136,9 +147,21 @@ export const config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec','dot'],//,'junit'],
-
-
+    reporters:[
+        [
+            "spec",
+            {
+            showPreface: false,
+            },
+        ],
+        'dot',
+        ['junit', {
+            outputDir: './reports',
+            outputFileFormat: function(options) { // optional
+                return `results-${options.cid}.${options.capabilities}.xml`
+            }
+        }]
+    ],
     
     //
     // Options to be passed to Mocha.
@@ -217,8 +240,9 @@ export const config = {
     /**
      * Function to be executed before a test (in Mocha/Jasmine) starts.
      */
-    // beforeTest: function (test, context) {
-    // },
+    beforeTest: function (test, context) {
+        
+    },
     /**
      * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
      * beforeEach in Mocha)
@@ -241,8 +265,22 @@ export const config = {
      * @param {Boolean} result.passed    true if test has passed, otherwise false
      * @param {Object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+
+    afterTest: function( test, context, { error, result, duration, passed, retries }
+      ) {
+        //console.log('!!!!!!!!!!!!!!!!!!!!!!eferlkgnesrbrenbekndf');
+        // take a screenshot anytime a test fails and throws an error
+        if (error) {
+            //console.log(Object.values(test));
+            console.log('!!!!!!!!!!!!!!!!!!!!!!!!!@');
+            console.log(test.parent)
+            const today = new Date();
+            const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            const time = today.getHours() + "." + today.getMinutes() + "." + today.getSeconds();
+            let name = `./reports/${test.parent}_${test.title}_${date}-${time}.png`//${test}-${context}-
+            browser.saveScreenshot(name); 
+        }
+      },
 
 
     /**

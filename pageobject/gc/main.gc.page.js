@@ -1,3 +1,4 @@
+// main.gc.page.js
 import GcPage from './gc.page'
 import {Key} from 'webdriverio'
 class MainGcPage extends GcPage {

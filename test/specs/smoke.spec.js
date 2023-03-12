@@ -1,4 +1,4 @@
-// debug.spec.js
+// smoke.spec.js
 import mainGcPage from "../../pageobject/gc/main.gc.page"
 import searchResultGcPage from "../../pageobject/gc/searchResult.gc.page"
 import calculatorGcPage from "../../pageobject/gc/calculator.gc.page"
@@ -28,5 +28,3 @@ describe('Hurt Me Plenty', () => {
             exception.costLine);
     })
 })
-
-

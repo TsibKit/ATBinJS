@@ -17,7 +17,11 @@ class CalculatorGcPage extends GcPage{
     get locationList () {return $('[placeholder="Datacenter location"]')};
     get committedUsageList () {return $('[placeholder="Committed usage"]')};
     get addToEstimateBtn () {return $('[ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]')};
-    get totalEstimatedCost() {return $('b*= Total Estimated Cost:')}
+    get totalEstimatedCost() {return $('b*= Total Estimated Cost:')};
+    get emailEstimateBtn () {return $('[title="Email Estimate"]')}
+    get emailEstimateInput () {return $('[ng-model="emailQuote.user.email"]')};
+    get sendEmailEstimateBtn () {return $('button*=Send Email')}
+    get  () {return $('')};
     // get  () {return $('')};
 
     getByValue (value)      {return $(`//md-option[@value="${value}"]`)};
@@ -25,97 +29,54 @@ class CalculatorGcPage extends GcPage{
     getGpuNumber(number)    {return $(`md-option[ng-repeat*="GpuNumbers"][value="${number}"]`)};
     getComputerServerRegion(location) {return $(`md-option[ng-repeat*="computeServer"][value="${location}"]`)};
     getCommittedUsage(value){return $(`#select_option_13${value}`)}
-
-
-    async clickByValue(value){
-        await this.getByValue(value).waitForClickable();
-        await this.getByValue(value).click();
-    }
-
-
-    async clickByName(name){
-        await this.getByName(name).waitForClickable();
-        await this.getByName(name).click();
-    }
-
-
-    async clickGpuNumber(number){
-        await this.getGpuNumber(number).waitForClickable();
-        await this.getGpuNumber(number).click();
-    }
-
     
-    async clickComputerServerRegion(location){
-        await this.getComputerServerRegion(location).waitForClickable();
-        await this.getComputerServerRegion(location).click();
-    }
-    
-
-    async setCopmuteEngine(set){
-        await this.switchCalculatorFrame();
-        await this.computeEngineBtn.click();
-        await this.instaceNumber.setValue(set.instaceNumber);
-        await this.aim.setValue(set.aim);
-        await this.setSoftware(set.software);
-        await this.setVmClass(set.vmClass);
-        await this.setInstanceType(set.instanceType);
-        if (set.gpu.add){
-            await this.setGpu(set.gpu);
-        await this.setSsd(set.ssd);
-        await this.setLocation(set.location);
-        await this.setCommittedUsage(set.usage);
-        await this.submitEstimate();
-        }
-    }
-
 
     async setSoftware(software){
         await this.softwareList.click();
-        await this.clickByValue(software.value);
+        await this.waitAndClick(this.getByValue(software.value));
     }
 
 
     async setVmClass(vmClass){
         await this.vmClassList.click();
-        await this.clickByValue(vmClass.value);
+        await this.waitAndClick(this.getByValue(vmClass.value));
     }
 
 
     async setInstanceType(instanceType){
         await this.seriesList.click();
-        await this.clickByValue(instanceType.seriesValue);
+        await this.waitAndClick(this.getByValue(instanceType.seriesValue));
         await this.instanceTypeList.click();
-        await this.clickByValue(instanceType.value);
+        await this.waitAndClick(this.getByValue(instanceType.value));
     }
 
 
     async setGpu(gpu){
         await this.addGpusCheckBox.click();
         await this.gpuList.click();
-        await this.clickByValue(gpu.value);
+        await this.waitAndClick(this.getByValue(gpu.value));
         await this.gpuNumberList.click();
-        await this.clickGpuNumber(gpu.number);
+        await this.waitAndClick(this.getGpuNumber(gpu.number));
     }
 
 
     async setSsd(ssd){
         await this.ssdList.click();
-        await this.clickByName(ssd);
+        await this.waitAndClick(this.getByName(ssd));
     }
-
+    
 
     async setLocation(location){
         await this.locationList.waitForExist();
         await this.locationList.waitForClickable();
         await this.locationList.click();
-        await this.clickComputerServerRegion(location);
+        await this.waitAndClick(this.getComputerServerRegion(location));
     }
 
 
     async setCommittedUsage(usage){
         await this.committedUsageList.click();
-        await this.getCommittedUsage(usage.value).waitForClickable();
-        await this.getCommittedUsage(usage.value).click();
+        await this.waitAndClick(this.getCommittedUsage(usage.value));
     }
 
 
@@ -125,6 +86,9 @@ class CalculatorGcPage extends GcPage{
     async getTotalEstimatedCost(){
         let text = await this.totalEstimatedCost.getText();
         console.log(text)
+    }
+    async emailEstimate(){
+        await this.emailEstimateBtn.click();
     }
 
 

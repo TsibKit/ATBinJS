@@ -3,3 +3,6 @@ chain of selectors
     getByValue (value) {return $(`//md-option[@value="${value}"]`)};
 
     await gpuNumberContainer.getByValue(value).click()
+
+spaces in id
+    get emailEstimateBtn () {return $('#Email/ Estimate')};

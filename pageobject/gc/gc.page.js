@@ -1,4 +1,4 @@
-// gc.page.jsgc.page.js
+// gc.page.js
 import Page from "../page";
 export default class GcPage extends Page{
     title = 'Google Cloud';
