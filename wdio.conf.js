@@ -70,7 +70,7 @@ export const config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         //
-        browserName: 'chrome',
+        browserName: process.env.browsername||'chrome',
         // browserName: 'firefox',
         acceptInsecureCerts: true
         // If outputDir is provided WebdriverIO can capture driver session logs
