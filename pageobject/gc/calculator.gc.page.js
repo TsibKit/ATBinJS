@@ -1,7 +1,6 @@
 //calculator.gc.page.js
-import GcPage from "./gc.page";
-class CalculatorGcPage extends GcPage{
-    urlKey='products/calculator'
+import FmGcPage from "./fm.gc.page";
+class CalculatorGcPage extends FmGcPage{
     get computeEngineBtn () {return $('.md-tab.md-active .compute[title="Compute Engine"]')}
     get instaceNumber () {return $('input[ng-model*="computeServer.quantity"]')};
     get aim () {return $('input[ng-model*="computeServer.label"]')};
@@ -17,11 +16,10 @@ class CalculatorGcPage extends GcPage{
     get locationList () {return $('[placeholder="Datacenter location"]')};
     get committedUsageList () {return $('[placeholder="Committed usage"]')};
     get addToEstimateBtn () {return $('[ng-click="listingCtrl.addComputeServer(ComputeEngineForm);"]')};
-    get totalEstimatedCost() {return $('b*= Total Estimated Cost:')};
-    get emailEstimateBtn () {return $('[title="Email Estimate"]')}
-    get emailEstimateInput () {return $('[ng-model="emailQuote.user.email"]')};
-    get sendEmailEstimateBtn () {return $('button*=Send Email')}
-    get  () {return $('')};
+    // get totalEstimatedCost() {return $('b*= Total Estimated Cost:')};
+    // get emailEstimateBtn () {return $('[title="Email Estimate"]')}
+    // get emailEstimateInput () {return $('[ng-model="emailQuote.user.email"]')};
+    // get sendEmailEstimateBtn () {return $('button*=Send Email')}
     // get  () {return $('')};
 
     getByValue (value)      {return $(`//md-option[@value="${value}"]`)};
@@ -83,25 +81,22 @@ class CalculatorGcPage extends GcPage{
     async submitEstimate(){
         await this.addToEstimateBtn.click()
     }
-    async getTotalEstimatedCost(){
-        let text = await this.totalEstimatedCost.getText();
-        console.log(text)
-    }
-    async emailEstimate(){
-        await this.emailEstimateBtn.click();
-    }
+    // async getTotalEstimatedCost(){
+    //     let text = await this.totalEstimatedCost.getText();
+    //     console.log(text)
+    // }
+    // async emailEstimate(){
+    //     await this.emailEstimateBtn.click();
+    // }
+
+    // async insertMail(){
+    //     await this.emailEstimateBtn.click();
+    //     await this.emailEstimateInput.click();
+    //     await browser.keys([Key.Ctrl, 'v']);
+    // }
 
 
 
-    async switchCalculatorFrame(){
-        browser.switchToFrame(0); 
-        browser.switchToFrame(0);
-    }
-    
 
-
-    open (some='') {
-        return super.open(`${this.urlKey}/${some}`);
-    }
 }
 export default new CalculatorGcPage();

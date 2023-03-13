@@ -1,11 +1,10 @@
 // estimator.js
 import calculatorGcPage from "../pageobject/gc/calculator.gc.page";
+import estimateGcPage from "../pageobject/gc/estimate.gc.page";
 import mainMailPage from "../pageobject/mail/main.mail.page";
-import {Key} from 'webdriverio'
-//import mail from
 class Estimator {
     async setCopmuteEngine(settings){
-        await calculatorGcPage.switchCalculatorFrame();
+        await calculatorGcPage.switchToInerFrame();
         await calculatorGcPage.computeEngineBtn.click();
         await calculatorGcPage.instaceNumber.setValue(settings.instaceNumber);
         await calculatorGcPage.aim.setValue(settings.aim);
@@ -20,37 +19,17 @@ class Estimator {
     }
     async getEstimateToEmail(){
         await mainMailPage.openNew();
-        let timeout1 =1000*60*5
-        await mainMailPage.waitAndClick(mainMailPage.clipBoardBtn);
-        await mainMailPage.checkMail.click();
-        console.log(await browser.getTitle())
-        await calculatorGcPage.switchWindow(calculatorGcPage.title);
-        console.log(await browser.getTitle())
-        await calculatorGcPage.switchCalculatorFrame();
-        await calculatorGcPage.emailEstimateBtn.click();
-        await calculatorGcPage.emailEstimateInput.click();
-        await browser.keys([Key.Ctrl, 'v']);
-        // await browser.pause(15000);
-        await calculatorGcPage.sendEmailEstimateBtn.click();
+        await mainMailPage.copyEmail();
+        await estimateGcPage.switchWindow();
+        await estimateGcPage.insertEmail();
+        await estimateGcPage.sendEmailEstimateBtn.click();
         await mainMailPage.switchWindow(mainMailPage.title);
-        //await mainMailPage.switchToInbox();
-        
-        // while (!(await mainMailPage.googleMessage.isExisting())) {
-        //     //await mainMailPage.waitAndClick(mainMailPage.refreshBtn,{timeout:5000});
-        //     await browser.pause(5000);
-        //     // console.log(await ($('title')).getText());
-        //     console.log(await browser.getTitle());
-        //     console.log(await mainMailPage.googleMessage.isExisting())
-        //     await browser.refresh(); 
-        // }
-       // await mainMailPage.googleMessage.click();
-       //await mainMailPage.switchToMail();
-       await browser.pause(3000);
-       await browser.refresh();
-       await mainMailPage.switchToInbox();
-       let text = await mainMailPage.googleEstimateText.getText();
-       console.log(text);
-       //await browser.pause(40000)
+        await mainMailPage.selectMail(1000);
+        let cost = await mainMailPage.getGoogleText();
+        console.log('GoogleTextIs:');
+        console.log(cost);
+        await estimateGcPage.switchWindow();
+        return cost
     }
 }
 export default new Estimator()

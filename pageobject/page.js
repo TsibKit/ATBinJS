@@ -1,13 +1,14 @@
 // page.js
 export default class Page {
+    title = '';
     async open (path) {
         await browser.url(path);
     }
     async openNew (path) {
         await browser.newWindow(path);
     }
-    async switchWindow(mask){
-        await browser.switchWindow(mask);
+    async switchWindow(matcher=this.title){
+        await browser.switchWindow(matcher);
     }
     async waitAndClick(btn, waitParam={}){
         await btn.waitForClickable(waitParam);

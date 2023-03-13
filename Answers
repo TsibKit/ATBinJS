@@ -1,8 +1,0 @@
-chain of selectors
-    get gpuNumberContainer () {return $('#select_container_552')};
-    getByValue (value) {return $(`//md-option[@value="${value}"]`)};
-
-    await gpuNumberContainer.getByValue(value).click()
-
-spaces in id
-    get emailEstimateBtn () {return $('#Email/ Estimate')};

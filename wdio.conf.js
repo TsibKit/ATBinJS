@@ -284,7 +284,6 @@ export const config = {
 
     afterTest: function (test, context, { error, result, duration, passed, retries }
     ) {
-        //console.log('!!!!!!!!!!!!!!!!!!!!!!eferlkgnesrbrenbekndf');
         // take a screenshot anytime a test fails and throws an error
         if (error) {
             const today = new Date();

@@ -24,7 +24,10 @@
   "scripts": {
     "test": "wdio wdio.conf.js --suite smoke --suite other",
     "wdio": "wdio run ./wdio.conf.js",
-    "debug": "wdio wdio.conf.js --suite debug"
+    "debug": "wdio wdio.conf.js --suite debug",
+    "smoke": "wdio wdio.conf.js --suite smoke",
+    "other": "wdio wdio.conf.js --suite other"
+    
   },
   "author": "Nikita Tsibulskii",
   "license": "ISC"

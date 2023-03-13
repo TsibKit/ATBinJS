@@ -4,6 +4,7 @@ import searchResultGcPage from "../../pageobject/gc/searchResult.gc.page"
 import calculatorGcPage from "../../pageobject/gc/calculator.gc.page"
 import testDataReader from "../../service/testDataReader"
 import estimator from "../../service/estimator"
+import estimateGcPage from "../../pageobject/gc/estimate.gc.page"
 
 
 
@@ -59,15 +60,20 @@ import estimator from "../../service/estimator"
 // })
 describe('Start from estimate result',() => {
     it ('open estimated page', async () =>{
-        await calculatorGcPage.open('#id=e571347b-2d1e-4211-8b78-0c5804caa591');
-        await calculatorGcPage.switchCalculatorFrame();
-        await calculatorGcPage.getByName(testDataReader.settings.
-            aim)
-    //     await expect(calculatorGcPage.totalEstimatedCost).toHaveText(testDataReader.settings.
-    //         exception.costLine);
-    // })
-    // it ('email estimate',async() => {
-    //     await estimator.getEstimateToEmail();
-    //     // await browser.pause(600000);
+        await estimateGcPage.open('#id=e571347b-2d1e-4211-8b78-0c5804caa591');
+        await estimateGcPage.switchToInerFrame();
+    })
+
+
+    it('old estimate',async () => {
+        await expect(estimateGcPage.totalEstimatedCost).toHaveText(testDataReader.settings.
+            exception.costLine);
+    })  
+    
+    
+    it ('email estimate',async () => {
+        let cost = await estimator.getEstimateToEmail();
+        await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining("USD 1,081.20")
+        await expect(estimateGcPage.totalEstimatedCost).toHaveText(cost);
      })
 })

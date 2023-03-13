@@ -1,0 +1,23 @@
+chain of selectors
+    get gpuNumberContainer () {return $('#select_container_552')};
+    getByValue (value) {return $(`//md-option[@value="${value}"]`)};
+
+    await gpuNumberContainer.getByValue(value).click()
+
+spaces in id
+    get emailEstimateBtn () {return $('#Email/ Estimate')};
+
+
+
+
+
+
+
+
+
+        console.log('1111111111111111');
+        console.log('2222222222222222');
+        console.log('333333');
+        console.log('4444444');
+        console.log('666666666666666');
+        console.log('55555555555');

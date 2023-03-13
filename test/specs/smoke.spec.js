@@ -4,6 +4,7 @@ import searchResultGcPage from "../../pageobject/gc/searchResult.gc.page"
 import calculatorGcPage from "../../pageobject/gc/calculator.gc.page"
 import testDataReader from "../../service/testDataReader"
 import estimator from "../../service/estimator"
+import estimateGcPage from "../../pageobject/gc/estimate.gc.page"
 
 describe('Hardcore', () => {
     it ('Open main page',async() =>{
@@ -24,8 +25,11 @@ describe('Hardcore', () => {
         await estimator.setCopmuteEngine(testDataReader.settings);
     })
     it ('Get estimated', async () =>{
-        await calculatorGcPage.getTotalEstimatedCost();
-        await expect(calculatorGcPage.totalEstimatedCost).toHaveText(testDataReader.settings.
+        await expect(estimateGcPage.totalEstimatedCost).toHaveText(testDataReader.settings.
             exception.costLine);
     })
+    it ('email estimate',async () => {
+        let cost = await estimator.getEstimateToEmail();
+        await expect(estimateGcPage.totalEstimatedCost).toHaveText(cost);
+     })
 })
