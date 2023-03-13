@@ -10,7 +10,8 @@ export default class ChMailPage extends MailPage{
     
 
     get googleMessage() {return $('.lms*=Google Cloud Price Estimate')};
-    get googleEstimateText () {return $('h3')};
+    get googleEstimateText () {return $(' td:nth-child(4)')};
+    get testselector() {return $('.bname');}
 
 
     async selectMail(delay){
@@ -24,7 +25,7 @@ export default class ChMailPage extends MailPage{
 
     async getGoogleText(){
         await this.switchToMail();
-        await super.getGoogleText();
+        return await super.getGoogleText();
     }
 
 

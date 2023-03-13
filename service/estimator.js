@@ -26,8 +26,6 @@ class Estimator {
         await mainMailPage.switchWindow(mainMailPage.title);
         await mainMailPage.selectMail(1000);
         let cost = await mainMailPage.getGoogleText();
-        console.log('GoogleTextIs:');
-        console.log(cost);
         await estimateGcPage.switchWindow();
         return cost
     }

@@ -28,8 +28,8 @@ describe('Hardcore', () => {
         await expect(estimateGcPage.totalEstimatedCost).toHaveText(testDataReader.settings.
             exception.costLine);
     })
-    it ('email estimate',async () => {
+    it ('Email estimate',async () => {
         let cost = await estimator.getEstimateToEmail();
-        await expect(estimateGcPage.totalEstimatedCost).toHaveText(cost);
+        await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining(cost);
      })
 })

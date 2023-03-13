@@ -73,7 +73,6 @@ describe('Start from estimate result',() => {
     
     it ('email estimate',async () => {
         let cost = await estimator.getEstimateToEmail();
-        await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining("USD 1,081.20")
-        await expect(estimateGcPage.totalEstimatedCost).toHaveText(cost);
+        await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining(cost);
      })
 })

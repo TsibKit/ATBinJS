@@ -1,4 +1,4 @@
-// 4_yopmail.com.page.js
+// mail.page.js
 import Page from "../page";
 export default class MailPage extends Page{
     path = '!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!'
@@ -26,9 +26,7 @@ export default class MailPage extends Page{
         await this.googleMessage.click();
     }
     async getGoogleText(){
-        console.log(await this.googleEstimateText.isExisting() );
-        return await this.googleEstimateText.getText();
-        
+        return await this.googleEstimateText.getText();  
     }
 
 
