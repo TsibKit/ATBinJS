@@ -24,7 +24,7 @@ class Estimator {
         await estimateGcPage.insertEmail();
         await estimateGcPage.sendEmailEstimateBtn.click();
         await mainMailPage.switchWindow(mainMailPage.title);
-        await mainMailPage.selectMail(3000);
+        await mainMailPage.selectMail(20000);
         let cost = await mainMailPage.getGoogleText();
         await estimateGcPage.switchWindow();
         return cost
