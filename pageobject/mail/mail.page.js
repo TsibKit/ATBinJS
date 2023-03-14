@@ -16,9 +16,15 @@ export default class MailPage extends Page{
 
     get googleMessage() {return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')};
     get googleEstimateText () {return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')};
-    async copyEmail() {
+    get generatedEmail(){return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')};
+
+    async copyEmailInClipboard() { 
         await this.waitAndClick(this.clipBoardBtn);
     }
+    async getEmail() {
+        return this.generatedEmail.getText();
+    }
+    
 
     async selectMail(delay = 0){
         await browser.pause(delay);

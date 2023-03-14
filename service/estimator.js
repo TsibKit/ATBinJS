@@ -17,11 +17,19 @@ class Estimator {
         await calculatorGcPage.setCommittedUsage(settings.usage);
         await calculatorGcPage.submitEstimate();
     }
-    async getEstimateToEmail(delay = 2000){
+    async getEstimateToEmail(delay = 2000, clipBoard = true){
+        // let emailAdress;
         await mainMailPage.openNew();
-        await mainMailPage.copyEmail();
-        await estimateGcPage.switchWindow();
-        await estimateGcPage.insertEmail();
+        if (clipBoard) {
+            await mainMailPage.copyEmailInClipboard();
+            await estimateGcPage.switchWindow();
+            await estimateGcPage.insertEmailFromClipboard();
+        }
+        else {
+            let emailAdress = await mainMailPage.getEmail();
+            await estimateGcPage.switchWindow();
+            estimateGcPage.setEmail(emailAdress);
+        }
         await estimateGcPage.sendEmailEstimateBtn.click();
         await mainMailPage.switchWindow(mainMailPage.title);
         await mainMailPage.selectMail(delay);

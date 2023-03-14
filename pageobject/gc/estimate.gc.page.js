@@ -13,14 +13,19 @@ class EstimateGcPage extends FmGcPage{
         console.log(text)
     }
 
-    async insertEmail(){
+    async insertEmailFromClipboard(){
         await this.emailEstimateBtn.click();
         await this.emailEstimateInput.click();
         await browser.keys([Key.Ctrl, 'v']);
     }
+    
+    async setEmail(email){
+        await this.emailEstimateBtn.click();
+        await this.emailEstimateInput.setValue(email)
+    }
 
     async emailEstimate(){
-        this.insertEmail();
+        this.insertEmailFromClipboard();
         this.waitAndClick(this.sendEmailEstimateBtn);
     }
 

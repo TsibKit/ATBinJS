@@ -7,6 +7,7 @@ export default class ChMailPage extends MailPage{
 
     get clipBoardBtn () {return $('.notmobile*=Скопировать в буфер обмена')};
     get checkMail() {return $('button*=Проверить почту')}
+    get generatedEmail(){return $('#geny')}
     
 
     get googleMessage() {return $('.lms*=Google Cloud Price Estimate')};

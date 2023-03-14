@@ -6,6 +6,7 @@ export default class ChMailPage extends MailPage{
 
     get clipBoardBtn () {return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')};
     get checkMail() {return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')}
+    get generatedEmail(){return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')}
     
 
     get googleMessage() {return $('!!!!!!!!!!!!CHANGE ME!!!!!!!!!!!!!!!!!!!!')};
