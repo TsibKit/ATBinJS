@@ -16,6 +16,7 @@
     "@wdio/mocha-framework": "^8.4.0",
     "@wdio/spec-reporter": "^8.4.0",
     "chromedriver": "^110.0.0",
+    "cross-env": "^7.0.3",
     "geckodriver": "^3.2.0",
     "wdio": "^6.0.1",
     "wdio-chromedriver-service": "^8.1.1",
@@ -23,11 +24,12 @@
   },
   "scripts": {
     "test": "wdio wdio.conf.js --suite smoke --suite other",
+    "all": "wdio wdio.conf.js --suite all",
     "wdio": "wdio run ./wdio.conf.js",
     "debug": "wdio wdio.conf.js --suite debug",
     "smoke": "wdio wdio.conf.js --suite smoke",
-    "other": "wdio wdio.conf.js --suite other"
-    
+    "other": "wdio wdio.conf.js --suite other",
+    "variabled":"wdio wdio.conf.js --suite variabled"
   },
   "author": "Nikita Tsibulskii",
   "license": "ISC"

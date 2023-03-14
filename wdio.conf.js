@@ -36,6 +36,10 @@ export const config = {
         debug: [
             './test/specs/debug.spec.js'
         ],
+        all:['./test/specs/smoke.spec.js', './test/specs/other.spec.js'],
+        variabled:[
+            process.env.suites||'./test/specs/debug.spec.js'
+        ]
     },
     // Patterns to exclude.
     exclude: [
