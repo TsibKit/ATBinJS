@@ -29,7 +29,9 @@
     "debug": "wdio wdio.conf.js --suite debug",
     "smoke": "wdio wdio.conf.js --suite smoke",
     "other": "wdio wdio.conf.js --suite other",
-    "variabled":"wdio wdio.conf.js --suite variabled"
+    "variabled": "wdio wdio.conf.js --suite variabled",
+    "variabled_other":"cross-env suite='./test/specs/other.spec.js' wdio wdio.conf.js --suite variabled",
+    "variabled_all":"cross-env suite='./test/specs/other.spec.js','./test/specs/smoke.spec.js' wdio wdio.conf.js --suite variabled"
   },
   "author": "Nikita Tsibulskii",
   "license": "ISC"
