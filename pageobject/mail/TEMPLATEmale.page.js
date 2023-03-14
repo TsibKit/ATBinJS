@@ -18,7 +18,8 @@ export default class ChMailPage extends MailPage{
     //     await super.selectMail(delay)
     // }
     // async getGoogleText(){
-    //    return await super.getGoogleText()  
+    //    let googleText = await super.getGoogleText();
+    //    return googleText  
     // }
 
 

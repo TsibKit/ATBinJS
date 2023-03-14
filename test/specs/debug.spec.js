@@ -72,7 +72,7 @@ describe('Start from estimate result',() => {
     
     
     it ('email estimate',async () => {
-        let cost = await estimator.getEstimateToEmail();
+        let cost = await estimator.getEstimateToEmail(1000);
         await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining(cost);
      })
 })

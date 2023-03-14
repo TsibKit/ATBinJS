@@ -17,14 +17,14 @@ class Estimator {
         await calculatorGcPage.setCommittedUsage(settings.usage);
         await calculatorGcPage.submitEstimate();
     }
-    async getEstimateToEmail(){
+    async getEstimateToEmail(delay = 2000){
         await mainMailPage.openNew();
         await mainMailPage.copyEmail();
         await estimateGcPage.switchWindow();
         await estimateGcPage.insertEmail();
         await estimateGcPage.sendEmailEstimateBtn.click();
         await mainMailPage.switchWindow(mainMailPage.title);
-        await mainMailPage.selectMail(20000);
+        await mainMailPage.selectMail(delay);
         let cost = await mainMailPage.getGoogleText();
         await estimateGcPage.switchWindow();
         return cost

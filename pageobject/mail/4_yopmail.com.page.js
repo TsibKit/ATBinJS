@@ -11,7 +11,10 @@ export default class ChMailPage extends MailPage{
 
     get googleMessage() {return $('.lms*=Google Cloud Price Estimate')};
     get googleEstimateText () {return $(' td:nth-child(4)')};
-    get testselector() {return $('.bname');}
+    get testselector() {return $('.bname')};
+
+    get refreshBtn() {return $('#refresh')};
+
 
 
     async selectMail(delay){
@@ -25,8 +28,12 @@ export default class ChMailPage extends MailPage{
 
     async getGoogleText(){
         await this.switchToMail();
-        return await super.getGoogleText();
+        let googleText = await super.getGoogleText();
+        return googleText  
     }
+
+    async refresh(){
+        await this.refreshBtn.click()};
 
 
 
@@ -36,13 +43,15 @@ export default class ChMailPage extends MailPage{
     }
     async switchToInbox(){    
         const  iframe = await browser.findElement('css selector', '#ifinbox');
-        //const iframe = 1;
-        await browser.switchToFrame(null);
-        await browser.switchToFrame(iframe);
+        this.switchTo(iframe)
     }
     async switchToMail(){    
-        // const  iframe = await browser.findElement('css selector', '#ifmail');
+        //const  iframe = await browser.findElement('css selector', '#ifmail');
         const iframe = 2;
+        this.switchTo(iframe)
+    }
+
+    async switchTo(iframe){
         await browser.switchToFrame(null);
         await browser.switchToFrame(iframe);
     }

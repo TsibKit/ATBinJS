@@ -29,7 +29,8 @@ describe('Hardcore', () => {
             exception.costLine);
     })
     it ('Email estimate',async () => {
-        let cost = await estimator.getEstimateToEmail();
+        let emailDelay=5000;
+        let cost = await estimator.getEstimateToEmail(emailDelay);
         await expect(estimateGcPage.totalEstimatedCost).toHaveTextContaining(cost);
      })
 })

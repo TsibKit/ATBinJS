@@ -22,11 +22,15 @@ export default class MailPage extends Page{
 
     async selectMail(delay = 0){
         await browser.pause(delay);
-        await browser.refresh();
+        await this.refresh();
         await this.googleMessage.click();
     }
     async getGoogleText(){
         return await this.googleEstimateText.getText();  
+    }
+
+    async refresh(){
+        await browser.refresh();
     }
 
 
